@@ -1,0 +1,13 @@
+*:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.card {
+    overflow: hidden;
+}
+
+.card-img-top {
+    width: 550px;
+    height: 370px;
+}

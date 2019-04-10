@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>types of cuisine</title>
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin-ext" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="stylesheets/bootstrap.css">
+        <link rel="stylesheet" href="stylesheets/normalize.css">
+        <link rel="stylesheet" href="stylesheets/main.css">
+        <script src="https://unpkg.com/vue"></script>
+    </head>
+    
+    <body>
+        <div id="vue-app">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                       <h1 class="display-4">what is your favorite cuisine?</h1>
+                    <p class="lead">Let's vote!</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-4" v-for="type in types">
+                        <div class="card">
+                                <img class="card-img-top" v-bind:src='type.imageUrl' alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ type.name }} </h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="app.js"></script>
+    </body>
+</html>
