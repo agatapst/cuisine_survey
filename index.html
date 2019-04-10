@@ -33,7 +33,7 @@
                                     <th scope="col">Votes</th>
                                 </tr>
                             </thead>
-                            <tbody v-for="(type, index) in types">
+                            <tbody v-for="(type, index) in sortedTypes">
                                 <tr>
                                     <th scope="row">{{ index + 1 }}</th>
                                     <td>{{ type.name }}</td>
@@ -46,15 +46,8 @@
                 <div class="col-lg-6">
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-6 col-lg-4" v-for="type in types">
-                                <div class="card">
-                                    <img class="card-img-top" v-bind:src='type.imageUrl' alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ type.name }} </h5>
-                                        <p class="card-text"> {{ type.desc }} </p>
-                                        <button v-on:click="addPoint(type)">Vote</button>
-                                    </div>
-                                </div>
+                            <div class="col-xs-6 col-lg-4" v-for="cuisineType in types">
+                                <cuisine-card v-bind:cuisine-type="cuisineType">
                             </div> 
                         </div>
                     </div>
@@ -62,6 +55,17 @@
             </div>
         </div>
     </div>
+
+    <template id="cuisine-card">
+        <div class="card">
+            <img class="card-img-top" v-bind:src='cuisineType.imageUrl' alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ cuisineType.name }} </h5>
+                <p class="card-text"> {{ cuisineType.desc }} </p>
+                <button class="btn btn-primary" v-on:click="addPoint(cuisineType)" class="vote-button">Vote</button>
+            </div>
+        </div>
+    </template>
 
     <script type="text/javascript" src="app.js"></script>
 </body>
