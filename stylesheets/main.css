@@ -2,3 +2,7 @@
     box-shadow: none !important;
     outline: none !important;
 }
+
+.card-img-top {
+    height: 100px;
+}
