@@ -3,12 +3,46 @@
     outline: none !important;
 }
 
-.card-img-top {
-    height: 100px;
+body {
+    font-family: "Raleway", sans-serif
+    
 }
 
-.form-inline {
-    justify-content: center;
+.row {
+    margin: 20px auto;
+}
+
+/* jumbotron */
+.jumbotron {
+    background: url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+    overflow: hidden;
+    height: 300px;
+}
+
+.headline {
+    font-family: "Open Sans Condensed", sans-serif;
+    text-align: center;
+    font-size: 60px;
+    letter-spacing: 6px;
+}
+
+.cuisine-card, .add-new-input {
+    margin: 10px auto;
+}
+
+.add-new {
+    text-align: center;
+}
+
+.card-body {
+    text-align: center;
+}
+
+.card-img-top {
+    height: 300px;
 }
 
 .modal-mask {
@@ -29,14 +63,13 @@
   }
   
   .modal-container {
-    width: 300px;
+    width: 500px;
     margin: 0px auto;
     padding: 20px 30px;
     background-color: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
     transition: all .3s ease;
-    font-family: Helvetica, Arial, sans-serif;
   }
   
   .modal-header h3 {
@@ -51,26 +84,10 @@
   .modal-default-button {
     float: right;
   }
-  
-  /*
-   * The following styles are auto-applied to elements with
-   * transition="modal" when their visibility is toggled
-   * by Vue.js.
-   *
-   * You can easily play with the modal transition by editing
-   * these styles.
-   */
-  
-  .modal-enter {
-    opacity: 0;
-  }
-  
-  .modal-leave-active {
-    opacity: 0;
-  }
-  
-  .modal-enter .modal-container,
-  .modal-leave-active .modal-container {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
-  }
+
+  @media only screen and (min-width: 767px) {
+    .card-img-top {
+        height: 120px;
+    }
+}
+

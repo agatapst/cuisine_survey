@@ -37,12 +37,14 @@ new Vue({
   el: '#vue-app',
   data: {
     types: [
-      {name: 'italian', desc: 'pizza, spaghetti', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80.jpg'},
-      {name: 'spanish', desc: 'paella, jamon, churros', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1512058466835-da4d54fb0ee8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=960&q=80.jpg'},
-      {name: 'israeli', desc: 'falafel, hummus', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1547058881-aa0edd92aab3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80.jpg'},
-      {name: 'mexican', desc: 'epanadas, guacamole', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1548228586-171fb0887ac0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=970&q=80'},
-      {name: 'thai', desc: 'pad thai, red curry', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80.jpg'},
-      {name: 'chinese', desc: 'bao, noodle, dumplings', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1550303659-a777c03a27bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80.jpg'},
+      {name: 'italian', desc: 'spaghetti', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80.jpg'},
+      {name: 'spanish', desc: 'churros', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1512058466835-da4d54fb0ee8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=960&q=80.jpg'},
+      {name: 'israeli', desc: 'falafel', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1547058881-aa0edd92aab3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80.jpg'},
+      {name: 'mexican', desc: 'guacamole', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1548228586-171fb0887ac0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=970&q=80'},
+      {name: 'thai', desc: 'red curry', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80.jpg'},
+      {name: 'chinese', desc: 'dumplings', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1550303659-a777c03a27bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80.jpg'},
+      {name: 'polish', desc: 'pierogi', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1503595787607-3bc1626adf4a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80.jpg'},    
+      {name: 'japanese', desc: 'sushi rolls', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1540648639573-8c848de23f0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1124&q=80.jpg'}   
     ],
     query: '',
     showModal: false

@@ -5,7 +5,7 @@
     <title>types of cuisine</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Lato&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway&amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheets/bootstrap.css">
     <link rel="stylesheet" href="stylesheets/normalize.css">
@@ -15,18 +15,25 @@
 
 <body>
     <div id="vue-app">
+        <!-- jumbotron -->
         <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1 class="display-4">vote for the best cuisine</h1>
-                <p class="lead">what is your fav?</p>
-            </div>
         </div>
+        <container>
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="headline">vote for the best cuisine</h2>
+                </div>
+            </div>
+        </container>
+        <!-- main body -->
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="container">
+                        <!-- table with votes -->
                         <table class="table">
                             <thead>
+                                <h3>vote results</h3>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Cuisine type</th>
@@ -38,32 +45,24 @@
                                     <th scope="row">{{ index + 1 }}</th>
                                     <td>{{ type.name }}</td>
                                     <td>{{ type.votes }}                                
-                                    </tr>
-                                </tbody>
-                            </table>
+                                </tr>
+                             </tbody>
+                        </table>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-7 off-md-1">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form class="form-inline">
-                                        <input v-model="query" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                    </form>
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" 
-                                    id="show-modal" @click="showModal = true">Add new cuisine</button>
-                                    <!-- use the modal component, pass in the prop -->
-                                    <modal  v-if="showModal" 
-                                    @close="showModal = false" 
-                                    v-bind:on-add-new-type="addNewType">
-                                    <h3 slot="header">add new cuisine</h3>
-                                </modal> 
-                                
+                                    <form class="form-inline row">
+                                        <h3 class="col-sm-6 col-md-12 col-lg-6">cuisine contestants </h3>
+                                        <input v-model="query" class="col-sm-6 col-md-12 col-lg-6 form-control" type="search" placeholder="Search" aria-label="Search">
+                                    </form>                               
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4" v-for="cuisineType in filteredList">
+                        <div class="col-md-6 col-lg-4 cuisine-card" v-for="cuisineType in filteredList">
                             
                             <cuisine-card v-bind:cuisine-type="cuisineType">
                                 
@@ -71,7 +70,19 @@
                             <template v-if="filteredList.length === 0">
                                 <p>"{{ query }}" not found</p>
                             </template>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 add-new">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" 
+                            id="show-modal" @click="showModal = true">Add new cuisine</button>
+                            <!-- use the modal component, pass in the prop -->
+                            <modal  v-if="showModal" 
+                            @close="showModal = false" 
+                            v-bind:on-add-new-type="addNewType">
+                            <h3 slot="header">add new cuisine</h3>
+                            </modal> 
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -82,9 +93,9 @@
         <div class="card">
             <img class="card-img-top" v-bind:src='cuisineType.imageUrl' alt="Card image cap">
             <div class="card-body">
-                <h5 class="card-title">{{ cuisineType.name }} </h5>
+                <h4 class="card-title">{{ cuisineType.name }} </h4>
                 <p class="card-text"> {{ cuisineType.desc }} </p>
-                <button class="btn btn-primary" v-on:click="addPoint(cuisineType)" class="vote-button">Vote</button>
+                <button class="btn btn-outline-info my-2 my-sm-0" v-on:click="addPoint(cuisineType)">vote</button>
             </div>
         </div>
     </template>
@@ -103,12 +114,12 @@
                         
                         <div class="modal-body">
                             <slot name="body">
-                                <form class="form-inline">
-                                    <input class="form-control mr-sm-2" placeholder="name" 
+                                <form>
+                                    <input class="form-control mr-sm-2 add-new-input" placeholder="name" 
                                     v-model="newType.name">
-                                    <input class="form-control mr-sm-2" type="search" placeholder="description" 
+                                    <input class="form-control mr-sm-2 add-new-input" placeholder="favorite dish" 
                                     v-model="newType.desc">
-                                    <input class="form-control mr-sm-2" type="search" placeholder="image url" 
+                                    <input class="form-control mr-sm-2 add-new-input" placeholder="image url" 
                                     v-model="newType.imageUrl">
                                 </form>
                             </slot>
@@ -116,7 +127,7 @@
                         
                         <div class="modal-footer">
                             <slot name="footer">
-                                <button class="btn btn-outline-success my-2 my-sm-0modal-default-button"
+                                <button class="btn btn-outline-success my-2 my-sm-0"
                                 @click="onAddNewType(newType)">
                                 ADD
                             </button>
