@@ -51,11 +51,22 @@
                                     <input v-model="query" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                                 </form>
+                                <button id="show-modal" @click="showModal = true">Show Modal</button>
+                                <!-- use the modal component, pass in the prop -->
+                                <modal  v-if="showModal" 
+                                        @close="showModal = false" 
+                                        v-bind:cuisine-types="types">
+                                  <h3 slot="header">add new cuisine</h3>
+                                </modal> 
+
+                            </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4" v-for="cuisineType in filteredList">
+                                
                                 <cuisine-card v-bind:cuisine-type="cuisineType">
+                                
                             </div>
                             <template v-if="filteredList.length === 0">
                                 <p>"{{ query }}" not found</p>
@@ -77,6 +88,41 @@
             </div>
         </div>
     </template>
+
+    <script type="text/x-template" id="modal-template">
+        <transition name="modal">
+          <div class="modal-mask">
+            <div class="modal-wrapper">
+              <div class="modal-container">
+      
+                <div class="modal-header">
+                  <slot name="header">
+                    add new cuisine
+                  </slot>
+                </div>
+      
+                <div class="modal-body">
+                  <slot name="body">
+                    <form class="form-inline">
+                        <input  placeholder="Add new" 
+                                v-model="newType.name" 
+                                v-on:keyup.enter="addNew()">
+                    </form>
+                  </slot>
+                </div>
+      
+                <div class="modal-footer">
+                  <slot name="footer">
+                    <button class="modal-default-button" @click="$emit('close')">
+                      OK
+                    </button>
+                  </slot>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </script>
 
     <script type="text/javascript" src="app.js"></script>
 </body>

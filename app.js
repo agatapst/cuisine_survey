@@ -1,13 +1,39 @@
 Vue.component('cuisine-card', {
   template: '#cuisine-card',
+  // data from parent (application) that this component depends on
+  // after being defined here, they have to be passed in html properties
   props: {
     cuisineType: Object,
-  }, 
-  
+  },
+  // component only methods
   methods: {
     addPoint: function(cuisineType) {
       console.log("point added: " + cuisineType.name)
       cuisineType.votes++;
+    }
+  }
+})
+
+Vue.component('modal', {
+  template: '#modal-template',
+  props: {
+    cuisineTypes: Array,
+  },
+  // component internal data, visible only within this component
+  data: function() {
+    return {
+      newType: {
+        name: '',
+        desc: '',
+        votes: 0,
+        imageUrl: ''
+      }
+    }
+  },
+  methods: {
+    addNew: function() {
+      console.log("add");
+      this.cuisineTypes.push(this.newType)
     }
   }
 })
@@ -23,10 +49,12 @@ new Vue({
       {name: 'thai', desc: 'pad thai, red curry', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80.jpg'},
       {name: 'chinese', desc: 'bao, noodle, dumplings', votes: 0, imageUrl: 'https://images.unsplash.com/photo-1550303659-a777c03a27bd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80.jpg'},
     ],
-    query: ''
+    query: '',
+    showModal: false
   },
   
   methods: {
+
   },
 
   computed: {
