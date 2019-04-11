@@ -26,6 +26,9 @@ new Vue({
     query: ''
   },
   
+  methods: {
+  },
+
   computed: {
     sortedTypes: function(){
       return this.types.concat().sort((type1, type2) => {
@@ -36,7 +39,8 @@ new Vue({
     },
     filteredList: function(){
       return this.types.filter(type => {
-        return type.name.toLowerCase().includes(this.query.toLowerCase());
+        return type.name.toLowerCase().includes(this.query.toLowerCase()) ||
+               type.desc.toLowerCase().includes(this.query.toLowerCase())
       })
     }
   }

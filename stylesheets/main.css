@@ -6,3 +6,7 @@
 .card-img-top {
     height: 100px;
 }
+
+.form-inline {
+    justify-content: center;
+}

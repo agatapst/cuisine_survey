@@ -46,15 +46,20 @@
                 <div class="col-md-6">
                     <div class="container">
                         <div class="row">
-                            <form class="form-inline">
-                                <input v-model="query" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                            </form>
+                            <div class="col-lg-12">
+                                <form class="form-inline">
+                                    <input v-model="query" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-6 col-sm-4 col-md-6 col-lg-4" v-for="cuisineType in filteredList">
                                 <cuisine-card v-bind:cuisine-type="cuisineType">
-                            </div> 
+                            </div>
+                            <template v-if="filteredList.length === 0">
+                                <p>"{{ query }}" not found</p>
+                            </template>
                         </div>
                     </div>
                 </div>
