@@ -17,7 +17,7 @@ Vue.component('cuisine-card', {
 Vue.component('modal', {
   template: '#modal-template',
   props: {
-    cuisineTypes: Array,
+    onAddNewType: Function,
   },
   // component internal data, visible only within this component
   data: function() {
@@ -30,12 +30,7 @@ Vue.component('modal', {
       }
     }
   },
-  methods: {
-    addNew: function() {
-      console.log("add");
-      this.cuisineTypes.push(this.newType)
-    }
-  }
+  methods: {}
 })
 
 new Vue({
@@ -52,24 +47,28 @@ new Vue({
     query: '',
     showModal: false
   },
-  
-  methods: {
-
-  },
-
   computed: {
-    sortedTypes: function(){
+    sortedTypes: function() {
       return this.types.concat().sort((type1, type2) => {
         if(type1.votes < type2.votes) { return 1; }
         if(type1.votes > type2.votes) { return -1; }
         return 0
       });
     },
-    filteredList: function(){
+    filteredList: function() {
       return this.types.filter(type => {
         return type.name.toLowerCase().includes(this.query.toLowerCase()) ||
                type.desc.toLowerCase().includes(this.query.toLowerCase())
       })
+    }
+  },
+  methods: {
+    addNewType: function(newType) {
+      this.types.push(newType);
+      this.showModal = false;
+    },
+    closeModal: function() {
+      this.showModal = false;
     }
   }
 })
