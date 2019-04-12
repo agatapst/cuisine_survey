@@ -5,7 +5,6 @@
 
 body {
     font-family: "Raleway", sans-serif
-    
 }
 
 .row {
@@ -22,6 +21,7 @@ body {
     height: 300px;
 }
 
+/* headline */
 .headline {
     font-family: "Open Sans Condensed", sans-serif;
     text-align: center;
@@ -29,22 +29,20 @@ body {
     letter-spacing: 6px;
 }
 
+/* main body */
 .cuisine-card, .add-new-input {
     margin: 10px auto;
 }
 
-.add-new {
-    text-align: center;
-}
-
-.card-body {
+.card-body, .add-new-section {
     text-align: center;
 }
 
 .card-img-top {
-    height: 300px;
+    height: 270px;
 }
 
+/* modal */
 .modal-mask {
     position: fixed;
     z-index: 9998;
@@ -85,7 +83,8 @@ body {
     float: right;
   }
 
-  @media only screen and (min-width: 767px) {
+/* media queries */
+@media only screen and (min-width: 767px) {
     .card-img-top {
         height: 120px;
     }

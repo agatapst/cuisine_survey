@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>types of cuisine</title>
+    <title>Cuisine vote</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway&amp;subset=latin-ext" rel="stylesheet">
@@ -14,23 +14,24 @@
 </head>
 
 <body>
+    <!-- Vue app starts -->
     <div id="vue-app">
         <!-- jumbotron -->
-        <div class="jumbotron jumbotron-fluid">
-        </div>
-        <container>
+        <div class="jumbotron jumbotron-fluid"></div>
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <h2 class="headline">vote for the best cuisine</h2>
                 </div>
             </div>
-        </container>
+        </div>
         <!-- main body -->
         <div class="container">
             <div class="row">
+                <!-- left main column -->
                 <div class="col-md-4">
+                    <!-- table with votes -->
                     <div class="container">
-                        <!-- table with votes -->
                         <table class="table">
                             <thead>
                                 <h3>vote results</h3>
@@ -46,101 +47,115 @@
                                     <td>{{ type.name }}</td>
                                     <td>{{ type.votes }}                                
                                 </tr>
-                             </tbody>
+                            </tbody>
                         </table>
-                        </div>
                     </div>
-                    <div class="col-md-7 off-md-1">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <form class="form-inline row">
-                                        <h3 class="col-sm-6 col-md-12 col-lg-6">cuisine contestants </h3>
-                                        <input v-model="query" class="col-sm-6 col-md-12 col-lg-6 form-control" type="search" placeholder="Search" aria-label="Search">
-                                    </form>                               
+                </div>
+                <!-- right main column -->
+                <div class="col-md-7 off-md-1">
+                    <!-- searchbar -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form class="form-inline row">
+                                    <h3 class="col-sm-6 col-md-12 col-lg-6">cuisine contestants </h3>
+                                    <input v-model="query" class="col-sm-6 col-md-12 col-lg-6 form-control"
+                                           type="search" placeholder="Search" aria-label="Search"/>
+                                </form>                               
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-4 cuisine-card" v-for="cuisineType in filteredList">
-                            
-                            <cuisine-card v-bind:cuisine-type="cuisineType">
-                                
+                    <!-- cuisine cards -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4 cuisine-card" v-for="cuisineType in filteredList"> 
+                                <cuisine-card v-bind:cuisine-type="cuisineType"> 
                             </div>
+                            <!-- if cuisine card is not found -->
                             <template v-if="filteredList.length === 0">
                                 <p>"{{ query }}" not found</p>
                             </template>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12 add-new">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" 
-                            id="show-modal" @click="showModal = true">Add new cuisine</button>
-                            <!-- use the modal component, pass in the prop -->
-                            <modal  v-if="showModal" 
-                            @close="showModal = false" 
-                            v-bind:on-add-new-type="addNewType">
-                            <h3 slot="header">add new cuisine</h3>
-                            </modal> 
                         </div>
                     </div>
+                    <!-- add new cuisine button -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 add-new-section">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" 
+                                        id="show-modal" v-on:click="showModal = true">
+                                Add new cuisine
+                                </button>
+                                <!-- use the modal component -->
+                                <modal  v-if="showModal" 
+                                        v-on:close="showModal = false" 
+                                        v-bind:on-add-new-type="addNewType">
+                                <h3 slot="header">add new cuisine</h3>
+                                </modal> 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+    <!-- Vue app ends -->
+
+    <!-- template for cuisine card -->
     <template id="cuisine-card">
         <div class="card">
             <img class="card-img-top" v-bind:src='cuisineType.imageUrl' alt="Card image cap">
             <div class="card-body">
                 <h4 class="card-title">{{ cuisineType.name }} </h4>
                 <p class="card-text"> {{ cuisineType.desc }} </p>
-                <button class="btn btn-outline-info my-2 my-sm-0" v-on:click="addPoint(cuisineType)">vote</button>
+                <button class="btn btn-outline-info my-2 my-sm-0" v-on:click="addPoint(cuisineType)">
+                vote
+                </button>
             </div>
         </div>
     </template>
     
+    <!-- template for modal -->
     <script type="text/x-template" id="modal-template">
         <transition name="modal">
             <div class="modal-mask">
                 <div class="modal-wrapper">
                     <div class="modal-container">
-                        
+                        <!-- modal header -->
                         <div class="modal-header">
                             <slot name="header">
                                 add new cuisine
                             </slot>
                         </div>
-                        
+                        <!-- modal body -->
                         <div class="modal-body">
                             <slot name="body">
                                 <form>
                                     <input class="form-control mr-sm-2 add-new-input" placeholder="name" 
-                                    v-model="newType.name">
+                                           v-model="newType.name">
                                     <input class="form-control mr-sm-2 add-new-input" placeholder="favorite dish" 
-                                    v-model="newType.desc">
+                                           v-model="newType.desc">
                                     <input class="form-control mr-sm-2 add-new-input" placeholder="image url" 
-                                    v-model="newType.imageUrl">
+                                           v-model="newType.imageUrl">
                                 </form>
                             </slot>
                         </div>
-                        
+                        <!-- modal footer -->
                         <div class="modal-footer">
                             <slot name="footer">
                                 <button class="btn btn-outline-success my-2 my-sm-0"
-                                @click="onAddNewType(newType)">
+                                        v-on:click="onAddNewType(newType)">
                                 ADD
                             </button>
-                            <button type="button" class="btn btn-secondary" @click="$emit('close')">
+                            <button type="button" class="btn btn-secondary" v-on:click="$emit('close')">
                                 close
                             </button>
-                        </slot>
+                            </slot>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </transition>
-</script>
+        </transition>
+    </script>
 
 <script type="text/javascript" src="app.js"></script>
 </body>
