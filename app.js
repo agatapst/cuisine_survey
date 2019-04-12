@@ -67,6 +67,7 @@ new Vue({
     addNewType: function(newType) {
       this.types.push(newType);
       this.showModal = false;
+      this.query = '';
     },
     closeModal: function() {
       this.showModal = false;
